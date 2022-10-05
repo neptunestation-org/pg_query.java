@@ -65,6 +65,25 @@
 					</execution>
 				</executions>
 			</plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>target/generated-sources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -97,6 +116,8 @@
 								<argument>-java</argument>
 								<argument>-module</argument>
 								<argument>PgJava</argument>
+								<argument>-package</argument>
+								<argument>org.neptunestation.pg_java</argument>
 								<argument>-outdir</argument>
 								<argument>${project.build.directory}/generated-sources</argument>
 								<argument>pg_query.h</argument>
