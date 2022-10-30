@@ -17,6 +17,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+		<libpg_query.github.url>https://github.com/pganalyze/libpg_query</libpg_query.github.url>
+		<libpg_query.version>13-2.1.2</libpg_query.version>
   </properties>
 
   <dependencies>
@@ -30,6 +32,7 @@
 
   <build>
 		<plugins>
+
 			<plugin>
 				<groupId>com.googlecode.maven-download-plugin</groupId>
 				<artifactId>download-maven-plugin</artifactId>
@@ -43,11 +46,12 @@
 					</execution>
 				</executions>
 				<configuration>
-					<url>https://github.com/pganalyze/libpg_query/archive/refs/tags/13-2.1.2.zip</url>
+					<url>${libpg_query.github.url}/archive/refs/tags/${libpg_query.version}.zip</url>
 					<unpack>true</unpack>
 					<outputDirectory>${project.build.directory}/downloads</outputDirectory>
 				</configuration>
 			</plugin>
+
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.8</version>
@@ -65,6 +69,55 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>swig-libpq_query</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>swig</executable>
+							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
+							<arguments>
+								<argument>-java</argument>
+								<argument>-module</argument>
+								<argument>PgJava</argument>
+								<argument>-package</argument>
+								<argument>org.neptunestation.pg_java</argument>
+								<argument>-outdir</argument>
+								<argument>${project.build.directory}/generated-sources</argument>
+								<argument>-o</argument>
+								<argument>${project.build.directory}/downloads/libpg_query-13-2.1.2/src/pg_query_wrap.c</argument>
+								<argument>${project.basedir}/src/main/swig/pg_query.i</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>make-libpq_query</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
+							<executable>make</executable>
+							<environmentVariables>
+								<CFLAGS>-I${java.home}/include/ -I${java.home}/include/linux/</CFLAGS>
+							</environmentVariables>
+							<arguments>
+								<argument>build_shared</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -84,57 +137,14 @@
           </execution>
         </executions>
       </plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>download-libpq_query</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>make</executable>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
-							<arguments>
-								<argument>build_shared</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>swig-libpq_query</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>swig</executable>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
-							<arguments>
-								<argument>-java</argument>
-								<argument>-module</argument>
-								<argument>PgJava</argument>
-								<argument>-package</argument>
-								<argument>org.neptunestation.pg_java</argument>
-								<argument>-outdir</argument>
-								<argument>${project.build.directory}/generated-sources</argument>
-								<argument>pg_query.h</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+
 		</plugins>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
@@ -159,7 +169,6 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
-        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.7.1</version>
