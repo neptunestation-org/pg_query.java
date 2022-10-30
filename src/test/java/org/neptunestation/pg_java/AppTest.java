@@ -12,12 +12,12 @@ public class AppTest {
 				System.loadLibrary("pg_query");
 		}
 
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue () {
+		/**
+		 * Rigorous Test :-)
+		 */
+		@Test
+		public void shouldAnswerWithTrue () {
 				System.out.println(PgJava.pg_query_parse("select 1"));
-        assertTrue( true );
-    }
+				assertTrue( true );
+		}
 }
