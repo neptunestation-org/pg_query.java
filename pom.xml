@@ -83,7 +83,7 @@
 						</goals>
 						<configuration>
 							<executable>swig</executable>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
+							<workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
 							<arguments>
 								<argument>-java</argument>
 								<argument>-module</argument>
@@ -93,7 +93,7 @@
 								<argument>-outdir</argument>
 								<argument>${project.build.directory}/generated-sources</argument>
 								<argument>-o</argument>
-								<argument>${project.build.directory}/downloads/libpg_query-13-2.1.2/src/pg_query_wrap.c</argument>
+								<argument>${project.build.directory}/downloads/libpg_query-${libpg_query.version}/src/pg_query_wrap.c</argument>
 								<argument>${project.basedir}/src/main/swig/pg_query.i</argument>
 							</arguments>
 						</configuration>
@@ -105,7 +105,7 @@
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-13-2.1.2</workingDirectory>
+							<workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
 							<executable>make</executable>
 							<environmentVariables>
 								<CFLAGS>-I${java.home}/include/ -I${java.home}/include/linux/</CFLAGS>
@@ -138,6 +138,15 @@
         </executions>
       </plugin>
 
+			<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+					<argLine>-Djava.library.path=${project.build.directory}/downloads/libpg_query-${libpg_query.version}</argLine>
+        </configuration>
+      </plugin>
+			
 		</plugins>
     <pluginManagement>
       <plugins>
