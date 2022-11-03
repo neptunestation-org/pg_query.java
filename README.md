@@ -23,7 +23,7 @@ This was *tested* almost not at all.  Good luck!
 ## Installation ##
 
 ```shell
-git clone https://github.com/pganalyze/pg_query
+git clone https://github.com/davidaventimiglia/pg_java
 cd pg_query
 mvn package
 cp target/downloads/libpg_query-13-2.1.2/libpg_query.so /usr/lib/jni
