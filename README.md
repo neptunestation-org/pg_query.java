@@ -7,6 +7,7 @@ This Java extension uses the actual PostgreSQL server source to parse SQL querie
 * gcc
 * Make
 * Maven
+* Swig
 
 ## Caveat Emptor ##
 
@@ -16,7 +17,8 @@ This was *built* under the following conditions.
 2. gcc:  9.4.0
 3. make:  GNU Make 4.2.1
 4. Maven:  3.8.6
-5. Ubuntu: 20.04.1
+5. Ubuntu:  20.04.1
+6. Swig:  4.0.1
 
 This was *tested* almost not at all.  Good luck!
 
