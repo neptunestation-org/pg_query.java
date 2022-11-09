@@ -2,16 +2,15 @@ package org.neptunestation.pg_java;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+import java.io.*;
+import java.net.*;
+import java.nio.file.*;
+import org.junit.*;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest {
-		static {
-				System.loadLibrary("pg_query");
-		}
-
 		/**
 		 * Rigorous Test :-)
 		 */

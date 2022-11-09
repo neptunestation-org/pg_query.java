@@ -99,7 +99,7 @@
 					</execution>
 					<execution>
 						<id>make-libpq_query</id>
-						<phase>compile</phase>
+						<phase>process-sources</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
@@ -137,13 +137,29 @@
 				</executions>
 			</plugin>
 
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>copy-file</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <sourceFile>${project.build.directory}/downloads/libpg_query-${libpg_query.version}/libpg_query.so</sourceFile>
+              <destinationFile>${project.basedir}/src/main/resources/libpg_query.so</destinationFile>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M7</version>
-				<configuration>
-					<argLine>-Djava.library.path=${project.build.directory}/downloads/libpg_query-${libpg_query.version}</argLine>
-				</configuration>
 			</plugin>
 			
 		</plugins>
