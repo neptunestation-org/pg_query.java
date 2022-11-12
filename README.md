@@ -1,4 +1,4 @@
-# pg_java
+# pg_query.java
 This Java extension uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree.
 
 ## Pre-Requisites ##
@@ -25,26 +25,7 @@ This was *tested* almost not at all.  Good luck!
 ## Installation ##
 
 ```shell
-git clone https://github.com/davidaventimiglia/pg_java
-cd pg_query
-mvn package
-cp target/downloads/libpg_query-13-2.1.2/libpg_query.so /usr/lib/jni
-```
-
-## Usage ##
-
-Simple test with Beanshell.
-
-1. Run `bsh` with the appropriate `CLASSPATH` and `LD_LIBRARY_PATH`.
-
-```shell
-LD_LIBRARY_PATH=/usr/lib/jni bsh -classpath target/pg_java-1.0-SNAPSHOT.jar
-```
-
-2. Load the library, import the package, and run the simplest of all possible tests.
-
-```java
-import org.neptunestation.pg_query.*;
-System.loadLibrary("pg_query");
-print(PgJava.pg_query_parse("select 1").getParse_tree());
+git clone https://github.com/neptunestation-org/pg_query.java.git
+cd pg_query.java
+mvn install
 ```
