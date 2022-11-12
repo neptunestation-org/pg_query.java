@@ -16,7 +16,7 @@ public class AppTest {
 		 */
 		@Test
 		public void shouldAnswerWithTrue () {
-				System.out.println(org.neptunestation.pg_java.PgJava.pg_query_parse("select 1"));
+				System.out.println(PgJava.pg_query_parse("select 1"));
 				assertTrue( true );
 		}
 }
