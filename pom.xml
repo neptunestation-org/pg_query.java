@@ -153,7 +153,7 @@
             </goals>
             <configuration>
               <sourceFile>${project.build.directory}/downloads/libpg_query-${libpg_query.version}/libpg_query.so</sourceFile>
-              <destinationFile>${project.basedir}/src/main/resources/libpg_query.so</destinationFile>
+              <destinationFile>${project.basedir}/src/main/resources/NATIVE/amd64/Linux/libpg_query.so</destinationFile>
             </configuration>
           </execution>
         </executions>
