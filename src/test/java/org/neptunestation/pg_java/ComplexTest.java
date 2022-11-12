@@ -17,4 +17,8 @@ public class ComplexTest {
 	PgQueryFingerprintResult result = PgJava.pg_query_fingerprint(query);
 	assertEquals(fingerprint, result.getFingerprint_str());
     }
+
+    public void tearDown () {
+	PgJava.pg_query_exit();
+    }
 }
