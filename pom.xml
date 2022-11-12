@@ -30,6 +30,11 @@
 	</dependencies>
 
 	<build>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 
 			<plugin>
@@ -85,8 +90,6 @@
 							<workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
 							<arguments>
 								<argument>-java</argument>
-								<argument>-module</argument>
-								<argument>PgJava</argument>
 								<argument>-package</argument>
 								<argument>org.neptunestation.pg_java</argument>
 								<argument>-outdir</argument>
