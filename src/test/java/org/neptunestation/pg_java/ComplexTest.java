@@ -15,6 +15,6 @@ public class ComplexTest {
 	prop.load(input);
 	String query = prop.getProperty("query");
 	PgQueryFingerprintResult result = PgJava.pg_query_fingerprint(query);
-	assertEquals(result.getFingerprint_str(), fingerprint);
+	assertEquals(fingerprint, result.getFingerprint_str());
     }
 }
