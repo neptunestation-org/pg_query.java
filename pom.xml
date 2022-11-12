@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project
-		xmlns="http://maven.apache.org/POM/4.0.0"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.neptunestation</groupId>
-	<artifactId>pg_java</artifactId>
-	<version>1.0-SNAPSHOT</version>
+  <groupId>org.neptunestation</groupId>
+  <artifactId>pg_java</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
-	<name>${project.groupId}:${project.artifactId}</name>
-	<description>This Java library uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree.</description>
-	<url>https://github.com/davidaventimiglia/pg_java</url>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>This Java library uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree.</description>
+  <url>https://github.com/davidaventimiglia/pg_java</url>
 
-	<licenses>
-		<license>
-			<name>MIT License</name>
-			<url>http://www.opensource.org/licenses/mit-license.php</url>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+    </license>
+  </licenses>
 
-	<developers>
+  <developers>
     <developer>
       <name>David A. Ventimiglia</name>
       <email>davidaventimiglia@neptunestation.org</email>
@@ -29,147 +29,147 @@
     </developer>
   </developers>
 
-	<scm>
-		<connection>scm:git:git:git@github.com:davidaventimiglia/pg_java.git</connection>
-		<developerConnection>scm:git:ssh:git@github.com:davidaventimiglia/pg_java.git</developerConnection>
-		<url>https://github.com/davidaventimiglia/pg_java/tree/master</url>
-	</scm>
+  <scm>
+    <connection>scm:git:git:git@github.com:davidaventimiglia/pg_java.git</connection>
+    <developerConnection>scm:git:ssh:git@github.com:davidaventimiglia/pg_java.git</developerConnection>
+    <url>https://github.com/davidaventimiglia/pg_java/tree/master</url>
+  </scm>
 
-	<distributionManagement>
-		<repository>
-			<id>github</id>
-			<name>neptunestation-org</name>
-			<url>https://maven.pkg.github.com/neptunestation-org/pg_java</url>
-		</repository>
-	</distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>neptunestation-org</name>
+      <url>https://maven.pkg.github.com/neptunestation-org/pg_java</url>
+    </repository>
+  </distributionManagement>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<libpg_query.github.url>https://github.com/pganalyze/libpg_query</libpg_query.github.url>
-		<libpg_query.version>13-2.1.2</libpg_query.version>
-	</properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <libpg_query.github.url>https://github.com/pganalyze/libpg_query</libpg_query.github.url>
+    <libpg_query.version>13-2.1.2</libpg_query.version>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<testResources>
-			<testResource>
-				<directory>${project.basedir}/src/test/resources</directory>
-			</testResource>
-		</testResources>
-		<plugins>
+  <build>
+    <testResources>
+      <testResource>
+	<directory>${project.basedir}/src/test/resources</directory>
+      </testResource>
+    </testResources>
+    <plugins>
 
-			<plugin>
-				<groupId>com.googlecode.maven-download-plugin</groupId>
-				<artifactId>download-maven-plugin</artifactId>
-				<version>1.6.8</version>
-				<executions>
-					<execution>
-						<phase>initialize</phase>
-						<goals>
-							<goal>wget</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<url>${libpg_query.github.url}/archive/refs/tags/${libpg_query.version}.zip</url>
-					<unpack>true</unpack>
-					<outputDirectory>${project.build.directory}/downloads</outputDirectory>
-				</configuration>
-			</plugin>
+      <plugin>
+	<groupId>com.googlecode.maven-download-plugin</groupId>
+	<artifactId>download-maven-plugin</artifactId>
+	<version>1.6.8</version>
+	<executions>
+	  <execution>
+	    <phase>initialize</phase>
+	    <goals>
+	      <goal>wget</goal>
+	    </goals>
+	  </execution>
+	</executions>
+	<configuration>
+	  <url>${libpg_query.github.url}/archive/refs/tags/${libpg_query.version}.zip</url>
+	  <unpack>true</unpack>
+	  <outputDirectory>${project.build.directory}/downloads</outputDirectory>
+	</configuration>
+      </plugin>
 
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<phase>initialize</phase>
-						<configuration>
-							<target>
-								<mkdir dir="${project.build.directory}/generated-sources" />
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+      <plugin>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<version>1.8</version>
+	<executions>
+	  <execution>
+	    <phase>initialize</phase>
+	    <configuration>
+	      <target>
+		<mkdir dir="${project.build.directory}/generated-sources" />
+	      </target>
+	    </configuration>
+	    <goals>
+	      <goal>run</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>swig-libpq_query</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>swig</executable>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
-							<arguments>
-								<argument>-java</argument>
-								<argument>-package</argument>
-								<argument>org.neptunestation.pg_java</argument>
-								<argument>-outdir</argument>
-								<argument>${project.build.directory}/generated-sources</argument>
-								<argument>-o</argument>
-								<argument>${project.build.directory}/downloads/libpg_query-${libpg_query.version}/src/pg_query_wrap.c</argument>
-								<argument>${project.basedir}/src/main/swig/pg_query.i</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>make-libpq_query</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
-							<executable>make</executable>
-							<environmentVariables>
-								<CFLAGS>-I${java.home}/include/ -I${java.home}/include/linux/</CFLAGS>
-							</environmentVariables>
-							<arguments>
-								<argument>build_shared</argument>
-							</arguments>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>3.1.0</version>
+	<executions>
+	  <execution>
+	    <id>swig-libpq_query</id>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>exec</goal>
+	    </goals>
+	    <configuration>
+	      <executable>swig</executable>
+	      <workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
+	      <arguments>
+		<argument>-java</argument>
+		<argument>-package</argument>
+		<argument>org.neptunestation.pg_java</argument>
+		<argument>-outdir</argument>
+		<argument>${project.build.directory}/generated-sources</argument>
+		<argument>-o</argument>
+		<argument>${project.build.directory}/downloads/libpg_query-${libpg_query.version}/src/pg_query_wrap.c</argument>
+		<argument>${project.basedir}/src/main/swig/pg_query.i</argument>
+	      </arguments>
+	    </configuration>
+	  </execution>
+	  <execution>
+	    <id>make-libpq_query</id>
+	    <phase>process-sources</phase>
+	    <goals>
+	      <goal>exec</goal>
+	    </goals>
+	    <configuration>
+	      <workingDirectory>${project.build.directory}/downloads/libpg_query-${libpg_query.version}</workingDirectory>
+	      <executable>make</executable>
+	      <environmentVariables>
+		<CFLAGS>-I${java.home}/include/ -I${java.home}/include/linux/</CFLAGS>
+	      </environmentVariables>
+	      <arguments>
+		<argument>build_shared</argument>
+	      </arguments>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>target/generated-sources</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>build-helper-maven-plugin</artifactId>
+	<version>3.1.0</version>
+	<executions>
+	  <execution>
+	    <id>add-source</id>
+	    <phase>generate-sources</phase>
+	    <goals>
+	      <goal>add-source</goal>
+	    </goals>
+	    <configuration>
+	      <sources>
+		<source>target/generated-sources</source>
+	      </sources>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
 
       <plugin>
         <groupId>com.coderplus.maven.plugins</groupId>
@@ -190,53 +190,53 @@
         </executions>
       </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M7</version>
-			</plugin>
-			
-		</plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<version>3.0.0-M7</version>
+      </plugin>
+      
+    </plugins>
 
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.0.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.22.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>2.5.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.7.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>3.0.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+    <pluginManagement>
+      <plugins>
+	<plugin>
+	  <artifactId>maven-clean-plugin</artifactId>
+	  <version>3.1.0</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-resources-plugin</artifactId>
+	  <version>3.0.2</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-compiler-plugin</artifactId>
+	  <version>3.8.0</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-surefire-plugin</artifactId>
+	  <version>2.22.1</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-jar-plugin</artifactId>
+	  <version>3.0.2</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-install-plugin</artifactId>
+	  <version>2.5.2</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-deploy-plugin</artifactId>
+	  <version>2.8.2</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-site-plugin</artifactId>
+	  <version>3.7.1</version>
+	</plugin>
+	<plugin>
+	  <artifactId>maven-project-info-reports-plugin</artifactId>
+	  <version>3.0.0</version>
+	</plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
