@@ -9,8 +9,16 @@
 	<artifactId>pg_java</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
-	<name>pg_java</name>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<description>This Java library uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree.</description>
 	<url>https://github.com/davidaventimiglia/pg_java</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
