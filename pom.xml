@@ -20,6 +20,21 @@
 		</license>
 	</licenses>
 
+	<developers>
+    <developer>
+      <name>David A. Ventimiglia</name>
+      <email>davidaventimiglia@neptunestation.org</email>
+      <organization>NeptuneStation.org</organization>
+      <organizationUrl>http://neptunestation.org</organizationUrl>
+    </developer>
+  </developers>
+
+	<scm>
+		<connection>scm:git:git:git@github.com:davidaventimiglia/pg_java.git</connection>
+		<developerConnection>scm:git:ssh:git@github.com:davidaventimiglia/pg_java.git</developerConnection>
+		<url>https://github.com/davidaventimiglia/pg_java/tree/master</url>
+	</scm>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
