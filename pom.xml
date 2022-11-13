@@ -122,7 +122,7 @@
 	      <arguments>
 		<argument>-java</argument>
 		<argument>-package</argument>
-		<argument>org.neptunestation.pg_java</argument>
+		<argument>org.neptunestation.pg_query.java</argument>
 		<argument>-outdir</argument>
 		<argument>${project.build.directory}/generated-sources</argument>
 		<argument>-o</argument>

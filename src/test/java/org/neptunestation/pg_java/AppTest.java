@@ -1,4 +1,4 @@
-package org.neptunestation.pg_java;
+package org.neptunestation.pg_query.java;
 
 import static org.junit.Assert.assertTrue;
 
