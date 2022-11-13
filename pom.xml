@@ -11,7 +11,7 @@
 
   <name>${project.groupId}:${project.artifactId}</name>
   <description>This Java library uses the actual PostgreSQL server source to parse SQL queries and return the internal PostgreSQL parse tree.</description>
-  <url>https://github.com/neptunestation-org/pg_query.java</url>
+  <url>https://github.com/neptunestation.org/pg_query.java</url>
 
   <licenses>
     <license>
@@ -30,16 +30,16 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git:git@github.com:neptunestation-org/pg_query.java.git</connection>
-    <developerConnection>scm:git:ssh:git@github.com:neptunestation-org/pg_query.java.git</developerConnection>
+    <connection>scm:git:https://github.com/neptunestation-org/pg_query.java.git</connection>
+    <developerConnection>scm:git:git@github.com:neptunestation-org/pg_query.java.git</developerConnection>
     <url>https://github.com/neptunestation-org/pg_query.java/tree/master</url>
   </scm>
 
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>neptunestation-org</name>
-      <url>https://maven.pkg.github.com/neptunestation-org/pg_query.java</url>
+      <name>neptunestation.org</name>
+      <url>https://maven.pkg.github.com/neptunestation.org/pg_query.java</url>
     </repository>
   </distributionManagement>
 
@@ -49,6 +49,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
     <libpg_query.github.url>https://github.com/pganalyze/libpg_query</libpg_query.github.url>
     <libpg_query.version>13-2.1.2</libpg_query.version>
+    <github.global.server>github</github.global.server>
   </properties>
 
   <dependencies>
@@ -196,6 +197,24 @@
 	<version>3.0.0-M7</version>
       </plugin>
       
+      <plugin>
+	<groupId>com.github.github</groupId>
+	<artifactId>site-maven-plugin</artifactId>
+	<version>0.12</version>
+	<configuration>
+          <message>Creating site for ${project.version}</message>
+	  <server>github-pages</server>
+	</configuration>
+	<executions>
+          <execution>
+	    <goals>
+	      <goal>site</goal>
+	    </goals>
+	    <phase>site</phase>
+          </execution>
+	</executions>
+      </plugin>
+
     </plugins>
 
     <pluginManagement>
@@ -248,7 +267,7 @@
         <version>3.4.1</version>
 	<configuration>
           <doclint>none</doclint>
-	   <sourcepath>${project.build.directory}/generated-sources</sourcepath>
+	  <sourcepath>${project.build.directory}/generated-sources</sourcepath>
 	</configuration>
       </plugin>
     </plugins>
